@@ -1,12 +1,11 @@
 import pygame as pg
 
 from ray import Ray
+from wall import Wall
+from extra import to_pygame
 from settings import *
 
 pg.init()
-
-WIDTH = 500
-HEIGHT = 500
 
 running = True;
 
@@ -15,7 +14,8 @@ clock = pg.time.Clock()
 
 pg.display.set_caption("Ray Casting")
 
-ray = Ray(WIDTH / 2, HEIGHT / 2, 1, -1)
+ray = Ray(WIDTH / 2, HEIGHT / 2, 1, 0)
+wall = Wall(300, 100, 300, 120)
 
 def update():
     pass
@@ -31,6 +31,10 @@ def events():
 
 def paint():
     ray.draw(screen)
+    wall.draw(screen)
+    p = ray.intersects(wall)
+    if p != None:
+        pg.draw.circle(screen, WHITE, to_pygame(p), 3)
     pg.display.update()
 
 def run():
