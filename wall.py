@@ -10,4 +10,5 @@ class Wall():
         self.y2 = y2
 
     def draw(self, screen):
+        """ Draws the wall onto the screen """
         pg.draw.line(screen, WHITE,(self.x1, self.y1), (self.x2, self.y2))

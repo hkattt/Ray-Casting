@@ -17,6 +17,9 @@ class Ray():
         self.dirY = math.sin(angle)
 
     def intersects(self, wall):
+        """ Returns the point at which the ray intersects with the given wall. Returns None
+            if the ray does not intersect with the wall.
+            Source: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection """
         x1, y1 = wall.x1, wall.y1
         x2, y2 = wall.x2, wall.y2
         x3, y3 = self.x, self.y
@@ -24,6 +27,7 @@ class Ray():
 
         den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
 
+        # The wall and ray are parallel when this happens
         if den == 0:
             return
         
@@ -36,5 +40,16 @@ class Ray():
             return (intersectX, intersectY)
         return
 
-    def draw(self, screen):
-        pg.draw.line(screen, WHITE, (self.x, self.y), (self.x + 10 * self.dirX, self.y + 10 * self.dirY))
+    def closest_wall(self, walls):
+        """ Returns the point of the closest intersection point. None if the 
+            ray does not intersect any of the walls. """
+        closest = float('inf')
+        closest_point = None
+        for wall in walls:
+            p = self.intersects(wall)
+            if p != None:
+                distance = math.dist((self.x, self.y), p)
+                if distance < closest:
+                    closest = distance
+                    closest_point = p
+        return closest_point
