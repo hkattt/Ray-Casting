@@ -2,7 +2,7 @@
 This is a simple ray casting render made using Python and Pygame.
 
 # Instructions
-The light particle in the left window will follow your cursor (until the boundary). The light particle can be rotated clockwise by pressing the right arrow key and it can be rotated anti-clockwise by pressing the left arrow key. The keys A and D can also be used to rotate the particle in a similar fashion. You can press the button in the bottom right corner of the screen to generate a new set of walls.
+The light particle in the left window will follow your cursor (until the boundary). The light particle can be rotated clockwise by pressing the right arrow key and it can be rotated anti-clockwise by pressing the left arrow key. The keys `A` and `D` can also be used to rotate the particle in a similar fashion. You can press the button in the bottom right corner of the screen to generate a new set of walls.
 
 # Demo Images
 ![demo1](assets/readme/demo1.png)
