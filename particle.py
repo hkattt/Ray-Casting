@@ -9,7 +9,7 @@ class Particle():
         self.x = x
         self.y = y
         self.rays = []
-        for angle in range(0, 360, 10):
+        for angle in range(0, 75, 2):
             ray = Ray(self.x, self.y, math.radians(angle))
             self.rays.append(ray)
 
@@ -27,6 +27,12 @@ class Particle():
                         closest_point = p
             if closest_point != None:
                 pg.draw.line(screen, WHITE, (ray.x, ray.y), closest_point)
+
+    def rotate(self, angle):
+        for ray in self.rays:
+            x, y = ray.dirX, ray.dirY
+            ray.dirX = x * math.cos(angle) - (y * math.sin(angle))
+            ray.dirY = x * math.sin(angle) + (y * math.cos(angle))             
 
     def update(self):
         dX, dY = pg.mouse.get_pos()

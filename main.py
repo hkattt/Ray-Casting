@@ -1,5 +1,6 @@
 import pygame as pg
 import random
+import math
 
 from particle import Particle
 from wall import Wall
@@ -29,13 +30,20 @@ def update():
 
 def events():
     global running
+    
+    keys = pg.key.get_pressed()
+    if keys[pg.K_RIGHT]:
+        particle.rotate(-0.1)
+    elif keys[pg.K_LEFT]:
+        particle.rotate(0.1)
+
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 running = False
-
+            
 def paint():
     screen.fill(BLACK)
     particle.draw(screen, walls)
